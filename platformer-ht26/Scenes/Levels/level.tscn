@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://d3oaim3h1e5y0"]
+[gd_scene load_steps=6 format=4 uid="uid://d3oaim3h1e5y0"]
 
 [ext_resource type="Texture2D" uid="uid://clpajx4utjfhk" path="res://Assets/tileset.png" id="1_f1n8c"]
+[ext_resource type="Script" uid="uid://cbsu6plcos5x7" path="res://Scripts/level.gd" id="1_yjxcc"]
 [ext_resource type="PackedScene" uid="uid://displ00x7vfjk" path="res://Scenes/player.tscn" id="2_7x7pb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7x7pb"]
@@ -375,6 +376,7 @@ terrain_set_0/terrain_0/color = Color(0.856106, 0.12653, 2.88785e-07, 1)
 sources/0 = SubResource("TileSetAtlasSource_7x7pb")
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_yjxcc")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(3, 3)
@@ -383,3 +385,6 @@ tile_set = SubResource("TileSet_tyfcb")
 
 [node name="Player" parent="." instance=ExtResource("2_7x7pb")]
 position = Vector2(203, 335)
+
+[node name="PlayerSpawnPos" type="Marker2D" parent="."]
+position = Vector2(252, 334)

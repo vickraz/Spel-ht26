@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal dead
+
 const MAX_SPEED = 350
 const ACC = 3000
 const JUMP_SPEED = 700
@@ -10,8 +12,12 @@ enum{IDLE, WALK, AIR, EDGE, DEAD}
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var coyote_timer: Timer = $CoyoteTimer
+@onready var jump_buffer: Timer = $JumpBuffer
 
 var state = IDLE
+var can_jump: bool = true
+var want_to_jump: bool = false
 
 ############# GAME LOOP ###########################
 func _physics_process(delta: float) -> void:
@@ -80,13 +86,21 @@ func _walk_state(delta: float) -> void:
 
 func _air_state(delta: float) -> void:
 	#1 get inputs
+	if Input.is_action_just_pressed("Jump") and can_jump:
+		can_jump = false
+		velocity.y = -JUMP_SPEED
+	elif Input.is_action_just_pressed("Jump") and not can_jump:
+		want_to_jump = true
+		jump_buffer.start()
 	var input_x = Input.get_axis("Move left", "Move right")
 	
 	#2. Utföra rörelse
 	_update_direction(input_x)
 	_movement(input_x, delta)
 	#3. kontroll om rörelse lett till state-förädring
-	if is_on_floor() and velocity.length() > 0:
+	if is_on_floor() and want_to_jump:
+		_enter_air_state(true)
+	elif is_on_floor() and velocity.length() > 0:
 		_enter_walk_state()
 	elif is_on_floor():
 		_enter_idle_state()
@@ -111,8 +125,13 @@ func _enter_walk_state() -> void:
 func _enter_air_state(jumping: bool) -> void:
 	state = AIR
 	anim.play("air")
+	want_to_jump = false
 	if jumping:
 		velocity.y = -JUMP_SPEED
+		can_jump = false
+	else:
+		can_jump = true
+		coyote_timer.start()
 
 func _enter_edge_state() -> void:
 	state = EDGE
@@ -121,3 +140,16 @@ func enter_dead_state() -> void:
 	state = DEAD
 
 ############ SIGNALS ##############################
+
+
+func _on_coyote_timer_timeout() -> void:
+	can_jump = false
+
+
+func _on_jump_buffer_timeout() -> void:
+	want_to_jump = false
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	emit_signal("dead")
+	queue_free()
