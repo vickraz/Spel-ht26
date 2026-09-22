@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cr42mmvoac8wb"]
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="Leftray" type="RayCast2D" parent="."]
+position = Vector2(-13, -6)
+
+[node name="RightRay" type="RayCast2D" parent="."]
+position = Vector2(14, -6)

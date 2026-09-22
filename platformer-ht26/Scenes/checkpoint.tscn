@@ -1,7 +1,45 @@
-[gd_scene format=3 uid="uid://5xntjfnaid74"]
+[gd_scene load_steps=6 format=3 uid="uid://5xntjfnaid74"]
 
-[node name="Checkpoint" type="Area2D"]
+[ext_resource type="Texture2D" uid="uid://21jhul6sslfc" path="res://Assets/flag.png" id="1_2cwi7"]
+[ext_resource type="Script" uid="uid://c0bhxys4s28s8" path="res://Scripts/checkpoint.gd" id="1_e75gc"]
+[ext_resource type="Texture2D" uid="uid://6i1kgxwli6c" path="res://Assets/flag_blue.png" id="2_e75gc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cwi7"]
+size = Vector2(20, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i1pff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2cwi7")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e75gc")
+}],
+"loop": true,
+"name": &"not active",
+"speed": 5.0
+}]
+
+[node name="Checkpoint" type="Area2D" groups=["checkpoints"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_e75gc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_2cwi7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -33)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_i1pff")
+animation = &"not active"
+autoplay = "not active"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
