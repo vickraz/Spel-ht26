@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://d3oaim3h1e5y0"]
+[gd_scene load_steps=8 format=4 uid="uid://d3oaim3h1e5y0"]
 
 [ext_resource type="Texture2D" uid="uid://clpajx4utjfhk" path="res://Assets/tileset.png" id="1_f1n8c"]
 [ext_resource type="Script" uid="uid://cbsu6plcos5x7" path="res://Scripts/level.gd" id="1_yjxcc"]
 [ext_resource type="PackedScene" uid="uid://displ00x7vfjk" path="res://Scenes/player.tscn" id="2_7x7pb"]
 [ext_resource type="PackedScene" uid="uid://5xntjfnaid74" path="res://Scenes/checkpoint.tscn" id="4_lkqqh"]
+[ext_resource type="PackedScene" uid="uid://cr42mmvoac8wb" path="res://Scenes/enemy.tscn" id="5_tq1so"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7x7pb"]
 texture = ExtResource("1_f1n8c")
@@ -402,3 +403,6 @@ limit_top = -50
 limit_bottom = 900
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="Enemy" parent="." instance=ExtResource("5_tq1so")]
+position = Vector2(713, 336)
