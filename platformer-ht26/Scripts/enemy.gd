@@ -36,4 +36,7 @@ func _on_turn_cooldown_timeout() -> void:
 
 
 func _on_player_detect_area_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	if body is Player:
+		#Skapar en riktningsvektior (längden 1) som pekar från enemy till spelare
+		var direction_to_player = global_position.direction_to(body.global_position)
+		body.enter_dead_state(direction_to_player)

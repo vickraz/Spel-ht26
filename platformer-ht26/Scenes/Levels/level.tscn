@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://d3oaim3h1e5y0"]
+[gd_scene load_steps=9 format=4 uid="uid://d3oaim3h1e5y0"]
 
 [ext_resource type="Texture2D" uid="uid://clpajx4utjfhk" path="res://Assets/tileset.png" id="1_f1n8c"]
 [ext_resource type="Script" uid="uid://cbsu6plcos5x7" path="res://Scripts/level.gd" id="1_yjxcc"]
 [ext_resource type="PackedScene" uid="uid://displ00x7vfjk" path="res://Scenes/player.tscn" id="2_7x7pb"]
 [ext_resource type="PackedScene" uid="uid://5xntjfnaid74" path="res://Scenes/checkpoint.tscn" id="4_lkqqh"]
 [ext_resource type="PackedScene" uid="uid://cr42mmvoac8wb" path="res://Scenes/enemy.tscn" id="5_tq1so"]
+[ext_resource type="Texture2D" uid="uid://dkit1iosmegx8" path="res://Assets/heart.png" id="6_rv5g2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7x7pb"]
 texture = ExtResource("1_f1n8c")
@@ -406,3 +407,31 @@ position_smoothing_enabled = true
 
 [node name="Enemy" parent="." instance=ExtResource("5_tq1so")]
 position = Vector2(713, 336)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="HeartSymbol1" type="TextureRect" parent="HUD/HBoxContainer"]
+self_modulate = Color(0.864126, 0.117215, 0.0873382, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("6_rv5g2")
+
+[node name="HeartSymbol2" type="TextureRect" parent="HUD/HBoxContainer"]
+self_modulate = Color(0.864126, 0.117215, 0.0873382, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("6_rv5g2")
+
+[node name="HeartSymbol3" type="TextureRect" parent="HUD/HBoxContainer"]
+self_modulate = Color(0.864126, 0.117215, 0.0873382, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("6_rv5g2")
