@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnph8noljvyq1"]
+
+[ext_resource type="FontFile" uid="uid://2i2xr13aqolg" path="res://Fonts ant themes/pixel_font.ttf" id="1_arass"]
+[ext_resource type="Script" uid="uid://dc30r6mi22b1" path="res://Scripts/game_over_menu.gd" id="1_i22rp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arass"]
+bg_color = Color(0.0605303, 0.0605304, 0.0605303, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i22rp"]
+bg_color = Color(0.417896, 0.417896, 0.417896, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsdey"]
+bg_color = Color(0.214103, 0.214103, 0.214103, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 4
+
+[node name="GameOverMenu" type="CanvasLayer"]
+script = ExtResource("1_i22rp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -106.0
+offset_top = -68.0
+offset_right = 1256.0
+offset_bottom = 762.0
+color = Color(0.333333, 0.333333, 0.333333, 0.392157)
+
+[node name="GameOverLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_arass")
+theme_override_font_sizes/font_size = 30
+text = "Game over"
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 527.0
+offset_top = 394.0
+offset_right = 635.0
+offset_bottom = 435.0
+theme_override_fonts/font = ExtResource("1_arass")
+theme_override_styles/hover = SubResource("StyleBoxFlat_arass")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i22rp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dsdey")
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

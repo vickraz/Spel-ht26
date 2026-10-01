@@ -7,6 +7,7 @@ const PLAYER_SCENE = preload("res://Scenes/player.tscn")
 @onready var player_spawn_pos: Marker2D = $PlayerSpawnPos
 @onready var camera_2d: Camera2D = $Camera2D
 
+var player_lives: int = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,8 +26,14 @@ func _on_checkpoint_activated(pos: Vector2, node_name: String) -> void:
 	
 
 func _on_player_dead() -> void:
-	player = PLAYER_SCENE.instantiate()
-	player.connect("dead", _on_player_dead)
-	player.global_position = player_spawn_pos.global_position
-	player.get_node("RemoteTransform2D").remote_path = camera_2d.get_path()
-	add_child(player)
+	player_lives -= 1
+	$HUD.update_heart_symbols(player_lives)
+	if player_lives > 0:
+		player = PLAYER_SCENE.instantiate()
+		player.connect("dead", _on_player_dead)
+		player.global_position = player_spawn_pos.global_position
+		player.get_node("RemoteTransform2D").remote_path = camera_2d.get_path()
+		add_child(player)
+	else:
+		$HUD.player_alive = false
+		$GameOverMenu.show()

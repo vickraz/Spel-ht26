@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://d3oaim3h1e5y0"]
+[gd_scene load_steps=12 format=4 uid="uid://d3oaim3h1e5y0"]
 
 [ext_resource type="Texture2D" uid="uid://clpajx4utjfhk" path="res://Assets/tileset.png" id="1_f1n8c"]
 [ext_resource type="Script" uid="uid://cbsu6plcos5x7" path="res://Scripts/level.gd" id="1_yjxcc"]
 [ext_resource type="PackedScene" uid="uid://displ00x7vfjk" path="res://Scenes/player.tscn" id="2_7x7pb"]
 [ext_resource type="PackedScene" uid="uid://5xntjfnaid74" path="res://Scenes/checkpoint.tscn" id="4_lkqqh"]
 [ext_resource type="PackedScene" uid="uid://cr42mmvoac8wb" path="res://Scenes/enemy.tscn" id="5_tq1so"]
+[ext_resource type="Script" uid="uid://ckaufgn60ve84" path="res://Scripts/hud.gd" id="6_lhx7y"]
 [ext_resource type="Texture2D" uid="uid://dkit1iosmegx8" path="res://Assets/heart.png" id="6_rv5g2"]
+[ext_resource type="FontFile" uid="uid://2i2xr13aqolg" path="res://Fonts ant themes/pixel_font.ttf" id="8_i5435"]
+[ext_resource type="PackedScene" uid="uid://dnph8noljvyq1" path="res://Scenes/game_over_menu.tscn" id="9_jbixu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7x7pb"]
 texture = ExtResource("1_f1n8c")
@@ -409,6 +412,7 @@ position_smoothing_enabled = true
 position = Vector2(713, 336)
 
 [node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("6_lhx7y")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 anchors_preset = 1
@@ -435,3 +439,14 @@ self_modulate = Color(0.864126, 0.117215, 0.0873382, 1)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture = ExtResource("6_rv5g2")
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+offset_left = 37.0
+offset_top = 19.0
+offset_right = 77.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("8_i5435")
+theme_override_font_sizes/font_size = 18
+text = "Time: 00:00"
+
+[node name="GameOverMenu" parent="." instance=ExtResource("9_jbixu")]

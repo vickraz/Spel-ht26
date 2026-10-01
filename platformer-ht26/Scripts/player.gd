@@ -149,11 +149,12 @@ func enter_dead_state(dir: Vector2) -> void:
 		
 		#Lite extra krydda till dödsanimation
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "rotation", rotation + PI, 0.5)
-		
+		if dir.x < 0:
+			tween.tween_property(self, "rotation", rotation - PI, 0.5)
+		else:
+			tween.tween_property(self, "rotation", rotation + PI, 0.5)
 
 ############ SIGNALS ##############################
-
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
