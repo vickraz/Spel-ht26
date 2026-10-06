@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Platformer ht26"
-run/main_scene="uid://d3oaim3h1e5y0"
+run/main_scene="uid://bh0ud6kxnipgc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

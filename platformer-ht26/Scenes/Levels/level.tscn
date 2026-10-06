@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d3oaim3h1e5y0"]
+[gd_scene load_steps=14 format=3 uid="uid://d3oaim3h1e5y0"]
 
 [ext_resource type="Texture2D" uid="uid://clpajx4utjfhk" path="res://Assets/tileset.png" id="1_f1n8c"]
 [ext_resource type="Script" uid="uid://cbsu6plcos5x7" path="res://Scripts/level.gd" id="1_yjxcc"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cr42mmvoac8wb" path="res://Scenes/enemy.tscn" id="5_tq1so"]
 [ext_resource type="Script" uid="uid://ckaufgn60ve84" path="res://Scripts/hud.gd" id="6_lhx7y"]
 [ext_resource type="Texture2D" uid="uid://dkit1iosmegx8" path="res://Assets/heart.png" id="6_rv5g2"]
+[ext_resource type="PackedScene" uid="uid://ldjyf1bshtgw" path="res://Scenes/heart.tscn" id="6_rxcld"]
 [ext_resource type="FontFile" uid="uid://2i2xr13aqolg" path="res://Fonts ant themes/pixel_font.ttf" id="8_i5435"]
 [ext_resource type="PackedScene" uid="uid://dnph8noljvyq1" path="res://Scenes/game_over_menu.tscn" id="9_jbixu"]
+[ext_resource type="PackedScene" uid="uid://c5l627qvl146t" path="res://Scenes/victory_menu.tscn" id="11_j3yal"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7x7pb"]
 texture = ExtResource("1_f1n8c")
@@ -386,7 +388,6 @@ script = ExtResource("1_yjxcc")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAADAAkAAAAAAAIAAAADAAgAAAAAAAEAAAADAAcAAAAAAAAAAAAEAAcAAAABAAAAAAAFAAcAAAABAAAAAAAGAAcAAAABAAAAAAAHAAcAAAABAAAAAAAIAAcAAAACAAAAAAAHAAgAAAABAAEAAAAHAAkAAAABAAIAAAAGAAkAAAABAAIAAAAFAAkAAAABAAIAAAAEAAkAAAABAAIAAAAEAAgAAAABAAEAAAAFAAgAAAABAAEAAAAGAAgAAAABAAEAAAAIAAgAAAACAAEAAAAIAAkAAAACAAIAAAARAAcAAAACAAAAAAAQAAcAAAABAAAAAAAPAAcAAAABAAAAAAAPAAgAAAABAAEAAAAQAAgAAAABAAEAAAARAAgAAAACAAEAAAAPAAkAAAABAAEAAAAPAAoAAAABAAEAAAAPAAsAAAABAAIAAAAQAAsAAAABAAIAAAARAAsAAAACAAIAAAARAAoAAAACAAEAAAARAAkAAAACAAEAAAAQAAkAAAABAAEAAAAQAAoAAAABAAEAAAAVAAcAAAAAAAIAAAAVAAYAAAAAAAAAAAAWAAYAAAABAAAAAAAWAAcAAAABAAIAAAAXAAcAAAABAAIAAAAXAAYAAAABAAAAAAAOAAcAAAABAAAAAAAOAAgAAAABAAEAAAAOAAkAAAABAAEAAAAOAAoAAAABAAEAAAAOAAsAAAABAAIAAAANAAcAAAAAAAAAAAANAAgAAAAAAAEAAAANAAkAAAAAAAEAAAANAAoAAAAAAAEAAAANAAsAAAAAAAIAAAAYAAYAAAABAAAAAAAZAAYAAAABAAAAAAAaAAYAAAABAAAAAAAbAAYAAAABAAAAAAAcAAYAAAACAAAAAAAbAAcAAAABAAIAAAAaAAcAAAABAAIAAAAZAAcAAAABAAIAAAAYAAcAAAABAAIAAAAcAAcAAAACAAIAAAA=")
 tile_set = SubResource("TileSet_tyfcb")
 
 [node name="Player" parent="." instance=ExtResource("2_7x7pb")]
@@ -398,9 +399,6 @@ position = Vector2(252, 334)
 [node name="Checkpoint" parent="." instance=ExtResource("4_lkqqh")]
 position = Vector2(690, 337)
 
-[node name="Checkpoint2" parent="." instance=ExtResource("4_lkqqh")]
-position = Vector2(1134, 287)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = -50
@@ -410,6 +408,9 @@ position_smoothing_enabled = true
 
 [node name="Enemy" parent="." instance=ExtResource("5_tq1so")]
 position = Vector2(713, 336)
+
+[node name="Heart" parent="." instance=ExtResource("6_rxcld")]
+position = Vector2(1348, 270)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("6_lhx7y")
@@ -450,3 +451,7 @@ theme_override_font_sizes/font_size = 18
 text = "Time: 00:00"
 
 [node name="GameOverMenu" parent="." instance=ExtResource("9_jbixu")]
+visible = false
+
+[node name="VictoryMenu" parent="." instance=ExtResource("11_j3yal")]
+visible = false
