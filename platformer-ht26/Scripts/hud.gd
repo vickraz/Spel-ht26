@@ -20,7 +20,8 @@ func update_heart_symbols(lives: int) -> void:
 	var hearts_to_hide = 3 - lives
 	var i = 0
 	for heart_sybmol in $HBoxContainer.get_children():
-		heart_sybmol.hide()
-		i += 1
-		if i == hearts_to_hide:
+		if i < hearts_to_hide:
+			heart_sybmol.hide()
+			i += 1
+		else:
 			break
